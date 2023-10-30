@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iris <iris@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 11:53:00 by iris              #+#    #+#             */
-/*   Updated: 2023/10/29 21:57:32 by iris             ###   ########.fr       */
+/*   Updated: 2023/10/30 17:42:02 by ivan-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,22 @@
 # include <iostream>
 # include <ctype.h>
 # include <cstring>
+# include <stdlib.h>
+
+// when a PhoneBook object is created, its index member will be set to 0 by default.
 
 class PhoneBook
 {
     public:
+		PhoneBook(){
+			index = 0;
+		}
         void    add(void);
-        void    search(void);
-    private:
-        Contact     contacts[8];
-        Contact     content(void);      
+        void    search(int count);   
         std::string get_info(std::string info);
-        void        content(void);
+    private:
+		int			index;
+        Contact     contacts[8];
 };
 
 #endif

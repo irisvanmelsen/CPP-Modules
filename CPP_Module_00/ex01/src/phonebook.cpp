@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iris <iris@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:14:04 by iris              #+#    #+#             */
-/*   Updated: 2023/10/29 21:59:18 by iris             ###   ########.fr       */
+/*   Updated: 2023/10/30 18:07:16 by ivan-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <ctype.h>
 #include <cstring>
+#include <cstdio>
 #include "PhoneBook.hpp"
 
 // std::cin represents the standard input stream (keyboard input)
@@ -21,6 +22,8 @@
 
 // std::endl used for output stream to add new line and flush output buffer
 
+// this is a pointer to the current instance of the class. You can use it to
+// access member variables and functions of the class.
 
 std::string PhoneBook::get_info(std::string info) {
     if (info.compare("") == 0)
@@ -28,7 +31,7 @@ std::string PhoneBook::get_info(std::string info) {
     return (info);
 }
 
-Contact    PhoneBook::content(void)
+void    PhoneBook::add(void)
 {
     std::string first_name, last_name, nick_name, phone_number, dark_secret;
 
@@ -58,21 +61,39 @@ Contact    PhoneBook::content(void)
         dark_secret = get_info(dark_secret);
         if (dark_secret.empty())
             return ;
+	Contact new_contact(first_name, last_name, nick_name, phone_number, dark_secret);
+	contacts[index] = new_contact;
+	std::cout << "New Contact Created" << this->index + 1 << std::endl;
+	this->index++;
+	if (this->index > 7)
+		this->index = 0;
 }
 
-void    PhoneBook::add(void)
+void	print
+
+void    PhoneBook::search(int count)
 {
-    std::string cmd;
-    std::getline(std::cin, cmd);
-    if (!std::cin)
-        exit(0);
-    for(int i = 0; i <= 8; i++)
-        contacts[i] = content();
-
-}
-
-void    PhoneBook::search()
-{
-    std::cout << " Index | First Name | Last Name | Nickname" << std::endl;
-
+	std::string	index;
+	
+    std::cout << "|----------|----------|----------|----------|" << std::endl;
+	std::cout << "|   Index  | Firstname| Lastname | Nickname |" << std::endl;
+	std::cout << "|----------|----------|----------|----------|" << std::endl;
+	std::cout << std::endl;
+	
+	for (int i = 0; i <= count; i++)
+		std::cout << " | " << i + 1 << " | ";
+	std::cout << "Enter Index: " << std::endl;
+	if (index[0] >= '0' && index[0] < 8 && !index[1])
+	else
+		i = 0;
+	if (i <= count)
+	{
+		std::cout << " Index: " << index << std::endl;
+		std::cout << " First Name: " << first_name << std::endl;
+		std::cout << " Last Name: " << last_name << std::endl;
+		std::cout << " Nickname: " << nick_name << std::endl;
+		std::cout << std::endl;
+	}
+	else
+		std::cout << "Incorrect Index" << std::endl;
 }
