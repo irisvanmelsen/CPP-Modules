@@ -5,30 +5,39 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/01 14:48:18 by ivan-mel          #+#    #+#              #
+#    Updated: 2023/11/01 14:49:45 by ivan-mel         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:44:14 by ivan-mel          #+#    #+#              #
 #    Updated: 2023/11/01 13:27:53 by ivan-mel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= 	phonebook
+NAME 		= 	megaphone
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++11
 CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc
-SRC			=	main.cpp \
-				contact.cpp \
-				phonebook.cpp
-				
+SRC			=	megaphone.cpp
 ifdef DEBUG
 	FLAGS += -g
 endif
 
 # Headers
-HEADER_DIR = include
-HEADERS = PhoneBook.hpp \
-		  Contact.hpp
+# HEADER_DIR = include
+# HEADERS = PhoneBook.hpp \
+# 		  Contact.hpp
 
 #OBJB_FILES	=	${SRCB:.c=.o}
 OBJ_DIR		:=	./obj
@@ -66,10 +75,10 @@ ${NAME}: ${OBJ}
 	@${CC} ${OBJ} ${FLAGS} -o ${NAME}
 	@echo ${Green} Complete 😊 ${Color_Off}
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS) | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 # @mkdir -p ${OBJ_DIR}
 	@echo ${Blue} Compiling: $< ${Color_Off}
-	@${CC} ${FLAGS} -c $< -o $@ -I $(HEADER_DIR)
+	@${CC} ${FLAGS} -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir $@

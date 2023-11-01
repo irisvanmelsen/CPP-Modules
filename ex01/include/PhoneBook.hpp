@@ -6,7 +6,7 @@
 /*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 11:53:00 by iris              #+#    #+#             */
-/*   Updated: 2023/10/31 13:26:32 by ivan-mel         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:46:29 by ivan-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class PhoneBook
 			index = 0;
 		}
         void    add(void);
-        void    search(int count);   
+        void    search(void);   
         std::string get_info(std::string info);
     private:
 		int			index;

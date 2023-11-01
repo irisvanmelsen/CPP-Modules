@@ -6,7 +6,7 @@
 /*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:49:11 by iris              #+#    #+#             */
-/*   Updated: 2023/10/31 13:11:41 by ivan-mel         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:46:31 by ivan-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,18 @@ int main (void) {
     {
         getline(std::cin, command);
         if (command == "ADD")
-		{
             phonebook.add();
-			i++;
-			count++;
-		}
         else if (command == "SEARCH")
 		{
 			if (!count)
 				std::cout << "No Contacts in Phonebook!";
-            phonebook.search(count);
+            phonebook.search();
 		}
         else if (command == "EXIT")
             break;
         else
             std::cout << "Please enter a valid command" << std::endl;
     }
-    std::cout << "exiting, contacts will forever be lost" << std::endl;
+    std::cout << "exiting, contacts will be lost forever" << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:14:04 by iris              #+#    #+#             */
-/*   Updated: 2023/10/31 13:36:04 by ivan-mel         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:47:10 by ivan-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,44 @@ void    PhoneBook::add(void)
 		this->index = 0;
 }
 
-void PhoneBook::search(int count)
+void PhoneBook::search(void)
 {
     std::string index;
     int i;
-    
+	int id;
+
+	id = 0;
     std::cout << "|----------|----------|----------|----------|" << std::endl;
     std::cout << "|   Index  | Firstname| Lastname | Nickname |" << std::endl;
     std::cout << "|----------|----------|----------|----------|" << std::endl;
 
-    for (i = 0; i < count; i++)
+    for (i = 0; i < 8; i++)
     {
         std::cout << "|" << std::setw(10) << i + 1 << "|";
         contacts[i].print_blocks();
     }
-
-    std::cout << "Enter Index: ";
-    std::cin >> index;
-
-    int id = std::stoi(index);
-    if (id >= 0 && id <= count)
+	while (1)
+	{
+		std::cout << "Enter Index: ";
+		std::cin >> index;
+		if (!index.empty())
+		{
+			try
+			{
+				id = std::stoi(index);
+			}
+			catch (std::invalid_argument)
+			{
+				std::cout << "Invalid argument" << std::endl;
+				return;
+			}
+		}
+		if (!(id >= 1 && id <= 8))
+			std::cout << id << "this is not a valid index" << std::endl;
+		else
+			break;
+	}
+    if (id >= 1)
     {
         std::cout << " Index: " << id << std::endl;
         std::cout << " First Name: " << contacts[id - 1].get_firstname() << std::endl;
