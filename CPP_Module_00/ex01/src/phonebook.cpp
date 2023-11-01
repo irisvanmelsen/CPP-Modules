@@ -6,7 +6,7 @@
 /*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:14:04 by iris              #+#    #+#             */
-/*   Updated: 2023/10/30 18:07:16 by ivan-mel         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:42:05 by ivan-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,69 +31,109 @@ std::string PhoneBook::get_info(std::string info) {
     return (info);
 }
 
+bool	is_phone_numeric(std::string &phone_number)
+{
+	int i;
+
+	i = 0;
+	while (i < (int)phone_number.length())
+	{
+		if (std::isdigit((int)phone_number[i]) == false)
+		{
+			std::cout << "Please add a valid phone number" << std::endl;
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
+std::string	PhoneBook::enter_entry(std::string info, int i)
+{
+	std::string entry;
+	
+	while (1)
+	{		
+		std::cout << info;
+		std::getline(std::cin, entry);
+		entry = get_info(entry);
+		while (entry[i])
+		if (!entry.empty() && i < 1)
+			return(entry);
+		if (i > 0)
+		{
+			if (is_phone_numeric(entry) == true)
+				return (entry);
+		}
+	}
+}
+
+
 void    PhoneBook::add(void)
 {
     std::string first_name, last_name, nick_name, phone_number, dark_secret;
 
     std::cout << "Please enter the following information to add a new contact " << std::endl;
-    std::cout << "First Name: ";
-    std::getline(std::cin, first_name);
-        first_name = get_info(first_name);
-        if (first_name.empty())
-            return ;
-    std::cout << "Last Name: ";
-    std::getline(std::cin, last_name);
-        last_name = get_info(last_name);
-        if (last_name.empty())
-            return ;
-    std::cout << "Nickname: ";
-    std::getline(std::cin, nick_name);
-        nick_name = get_info(nick_name);
-        if (nick_name.empty())
-            return ;
-    std::cout << "Phone Number: ";
-    std::getline(std::cin, phone_number);
-        phone_number = get_info(phone_number);
-        if (phone_number.empty())
-            return ;
-    std::cout << "Darkest Secret: ";
-    std::getline(std::cin, dark_secret);
-        dark_secret = get_info(dark_secret);
-        if (dark_secret.empty())
-            return ;
+    first_name = enter_entry("First Name: ", 0);
+	last_name = enter_entry("Last Name: ", 0);
+	nick_name = enter_entry("Nickname: ", 0);
+	phone_number = enter_entry("Phone Number: ", 1);
+	dark_secret = enter_entry("Darkest Secret: ", 0);
 	Contact new_contact(first_name, last_name, nick_name, phone_number, dark_secret);
 	contacts[index] = new_contact;
-	std::cout << "New Contact Created" << this->index + 1 << std::endl;
+	std::cout << "New Contact Created " << this->index + 1 << std::endl;
 	this->index++;
 	if (this->index > 7)
 		this->index = 0;
 }
 
-void	print
-
-void    PhoneBook::search(int count)
+void PhoneBook::search(int count)
 {
-	std::string	index;
-	
+    std::string index;
+    int i;
+	int id;
+
+	id = 0;
     std::cout << "|----------|----------|----------|----------|" << std::endl;
-	std::cout << "|   Index  | Firstname| Lastname | Nickname |" << std::endl;
-	std::cout << "|----------|----------|----------|----------|" << std::endl;
-	std::cout << std::endl;
-	
-	for (int i = 0; i <= count; i++)
-		std::cout << " | " << i + 1 << " | ";
-	std::cout << "Enter Index: " << std::endl;
-	if (index[0] >= '0' && index[0] < 8 && !index[1])
-	else
-		i = 0;
-	if (i <= count)
+    std::cout << "|   Index  | Firstname| Lastname | Nickname |" << std::endl;
+    std::cout << "|----------|----------|----------|----------|" << std::endl;
+
+    for (i = 0; i < count; i++)
+    {
+        std::cout << "|" << std::setw(10) << i + 1 << "|";
+        contacts[i].print_blocks();
+    }
+	while (1)
 	{
-		std::cout << " Index: " << index << std::endl;
-		std::cout << " First Name: " << first_name << std::endl;
-		std::cout << " Last Name: " << last_name << std::endl;
-		std::cout << " Nickname: " << nick_name << std::endl;
-		std::cout << std::endl;
+		std::cout << "Enter Index: ";
+		std::cin >> index;
+		if (!index.empty())
+		{
+			try
+			{
+				id = std::stoi(index);
+			}
+			catch (std::exception)
+			{
+				std::cout << "Invalid argument" << std::endl;
+				return;
+			}
+		}
+		if (!(id >= 1 && id <= 8))
+			std::cout << id << "this is not a valid index" << std::endl;
+		else
+			break;
 	}
-	else
-		std::cout << "Incorrect Index" << std::endl;
+    if (id >= 1)
+    {
+        std::cout << "Index: " << id << std::endl;
+        std::cout << "First Name: " << contacts[id - 1].get_firstname() << std::endl;
+        std::cout << "Last Name: " << contacts[id - 1].get_lastname() << std::endl;
+        std::cout << "Nickname: " << contacts[id - 1].get_nickname() << std::endl;
+        std::cout << std::endl;
+    }
+    else
+    {
+        std::cout << "Incorrect Index" << std::endl;
+    }
 }

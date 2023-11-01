@@ -6,7 +6,7 @@
 /*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:17:21 by ivan-mel          #+#    #+#             */
-/*   Updated: 2023/10/31 18:20:42 by ivan-mel         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:25:30 by ivan-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	Account::makeDeposit(int deposit)
 	_totalNbDeposits++;
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";" <<  "p_amount:" << _amount \
-	<< ";" << "deposit:" << _nbDeposits << ";" << "amount:" << _amount << \
-	_amount + _nbDeposits << ";" << "nb_deposits:" << std::endl;
+	<< ";" << "deposit:" << _nbDeposits << ";" << "amount:" << \
+	_amount + deposit << ";" << "nb_deposits:" << std::endl;
 	_amount = _amount + deposit;
 	_totalAmount = _totalAmount + deposit;
 }

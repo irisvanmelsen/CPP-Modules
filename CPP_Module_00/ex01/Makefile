@@ -6,14 +6,14 @@
 #    By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:44:14 by ivan-mel          #+#    #+#              #
-#    Updated: 2023/10/30 14:44:03 by ivan-mel         ###   ########.fr        #
+#    Updated: 2023/11/01 13:27:53 by ivan-mel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= 	phonebook
 
 #UTILS
-FLAGS 		=	-Wall -Werror -Wextra -std=c++98
+FLAGS 		=	-Wall -Werror -Wextra -std=c++11
 CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc

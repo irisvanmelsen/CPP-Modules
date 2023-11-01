@@ -6,11 +6,13 @@
 /*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 21:59:41 by iris              #+#    #+#             */
-/*   Updated: 2023/10/30 18:12:03 by ivan-mel         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:54:58 by ivan-mel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+//std::setw sets the field width to be used on output operations.
+//std::right sets the adjustfield format flag for the str stream to right.
 
 void Contact::print_contacts(){
     std::cout << "First Name: " << first_name << std::endl;
@@ -19,6 +21,39 @@ void Contact::print_contacts(){
     std::cout << "Phone Number: " << phone_number << std::endl;
     std::cout << "Darkest Secret: " << dark_secret << std::endl;
 }
+
+void print_dot(std::string info)
+{
+	if (info.length() > 10)
+
+		std::cout << std::setw(9) << std::right << info.substr(0,9) << ".|";
+	else
+		std::cout << std::setw(10) << std::right << info.substr(0, 10) << "|";
+}
+
+void Contact::print_blocks()
+{
+	print_dot(first_name);
+	print_dot(last_name);
+	print_dot(nick_name);
+    std::cout << std::endl;
+}
+
+std::string	Contact::get_firstname()
+{
+	return (first_name);
+}
+
+std::string	Contact::get_lastname()
+{
+	return (last_name);
+}
+
+std::string	Contact::get_nickname()
+{
+	return (nick_name);
+}
+
 
 //CONSTRUCTORS
 
