@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iris <iris@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:17:21 by ivan-mel          #+#    #+#             */
-/*   Updated: 2023/11/01 18:25:30 by ivan-mel         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:04:17 by iris             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	Account::displayAccountsInfos(void)
 	_displayTimestamp();
 	std::cout << "accounts:" << getNbAccounts() << ";" << "total:" << \
 	getTotalAmount() << ";" << "deposits:" << getNbDeposits() << ";" \
-	<< "withdrawals:" << getNbAccounts() << std::endl;
+	<< "withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
 void	Account::displayStatus(void) const
@@ -81,8 +81,8 @@ void	Account::makeDeposit(int deposit)
 	_totalNbDeposits++;
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";" <<  "p_amount:" << _amount \
-	<< ";" << "deposit:" << _nbDeposits << ";" << "amount:" << \
-	_amount + deposit << ";" << "nb_deposits:" << std::endl;
+	<< ";" << "deposit:" << deposit << ";" << "amount:" << \
+	_amount + deposit << ";" << "nb_deposits:" << _nbDeposits << std::endl;
 	_amount = _amount + deposit;
 	_totalAmount = _totalAmount + deposit;
 }
@@ -100,9 +100,9 @@ bool	Account::makeWithdrawal(int withdrawal)
 	_nbWithdrawals++;
 	_totalNbWithdrawals++;
 	std::cout << withdrawal << ";" << "amount:" << _amount - withdrawal \
-	<< ";" << "nb_withdrawals:" << _totalNbWithdrawals << std::endl;
-	_amount = _amount + withdrawal;
-	_totalAmount = _totalAmount + withdrawal;
+	<< ";" << "nb_withdrawals:" << _nbWithdrawals << std::endl;
+	_amount = _amount - withdrawal;
+	_totalAmount = _totalAmount - withdrawal;
 	return (true);
 }
 
@@ -125,5 +125,5 @@ int Account::getNbDeposits(void)
 
 int Account::getNbWithdrawals(void)
 {
-	return (_totalNbDeposits);
+	return (_totalNbWithdrawals);
 }

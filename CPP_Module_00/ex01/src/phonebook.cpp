@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivan-mel <ivan-mel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iris <iris@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 20:14:04 by iris              #+#    #+#             */
-/*   Updated: 2023/11/01 18:42:05 by ivan-mel         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:46:45 by iris             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,33 @@ bool	is_phone_numeric(std::string &phone_number)
 std::string	PhoneBook::enter_entry(std::string info, int i)
 {
 	std::string entry;
+	int count;
+	int allspaces;
+	int	j;
 	
+	count = 0;
+	j = 0;
 	while (1)
-	{		
+	{
+		allspaces = 0;
+		count = 0;
 		std::cout << info;
 		std::getline(std::cin, entry);
 		entry = get_info(entry);
-		while (entry[i])
-		if (!entry.empty() && i < 1)
+		while (entry[j])
+		{
+			if (isspace(entry[i]) != 0)
+				count++;
+			j++;
+		}
+		if (count == (int) entry.length())
+		{
+			std::cout << "Please enter alphabetic characters" << std::endl;
+			allspaces++;
+		}
+		if (!entry.empty() && i < 1 && allspaces == 0)
 			return(entry);
-		if (i > 0)
+		if (i > 0 && allspaces == 0)
 		{
 			if (is_phone_numeric(entry) == true)
 				return (entry);
