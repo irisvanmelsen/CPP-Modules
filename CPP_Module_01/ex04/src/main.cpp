@@ -10,10 +10,6 @@
 // find(): It's used to search for the first occurrence of a specified substring within the calling string.
 // It returns the position (index) of the first character of the found substring or std::string::npos if the substring is not found.
 
-// replace(): It's used to replace a portion of the string with another string or characters.
-// It takes the starting position (index) in the string where replacement should begin, 
-// the length of the substring to replace, and the string to replace it with.
-
 int main(int argc, char **argv)
 {
     if (argc != 4)
@@ -35,19 +31,25 @@ int main(int argc, char **argv)
     if (!out_file)
     {
         std::cout << "Failed to open file " << filename + ".replace" << std::endl;
+        input_file.close();
         return (1);
     }
     std::string line;
-    while (std::getline(input_file, line))
+while (std::getline(input_file, line))
+{
+    size_t pos = 0;
+    while (true)
     {
-        size_t position = 0;
-        while ((position = line.find(s1, position)) != std::string::npos)
+        size_t found = line.find(s1, pos); /* returns position of 1st occurence of s1 in line*/
+        if (found == std::string::npos)
         {
-            line.replace(position, s1.length(), s2);
-            position = position + s2.length();
+            out_file << line.substr(pos) << '\n'; /* no more occurences of s1 in line */
+            break;
         }
-        out_file << line << std::endl;
+        out_file << line.substr(pos, found - pos) << s2; /* another occurence, append until position then adds s2*/
+        pos = found + s1.length(); /* pos is now after occurence of s1 replaced by s2*/
     }
+}
     input_file.close();
     out_file.close();
     std::cout << "File copied succesfully!" << std::endl;
