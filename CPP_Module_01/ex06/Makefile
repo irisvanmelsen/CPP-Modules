@@ -1,5 +1,5 @@
 
-NAME 		= 	harl
+NAME 		= 	harlFilter
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++11
