@@ -1,5 +1,5 @@
 
-NAME 		= 	Polymorphism
+NAME 		= 	Abstract
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++98
@@ -7,11 +7,10 @@ CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc
 SRC			=	main.cpp \
-				animal.cpp \
-				dog.cpp \
-				cat.cpp \
-				WrongAnimal.cpp \
-				WrongCat.cpp
+				Animal.cpp \
+				Cat.cpp \
+				Dog.cpp \
+				Brain.cpp
 				
 ifdef DEBUG
 	FLAGS += -g
@@ -19,11 +18,11 @@ endif
 
 # Headers
 HEADER_DIR = include
-HEADERS = animal.hpp \
-		  cat.hpp \
-		  dog.hpp \
-		  WrongAnimal.hpp \
-		  WrongCat.hpp
+HEADERS = Brain.hpp \
+		  Animal.hpp \
+		  Cat.hpp \
+		  Dog.hpp \
+		  Brain.hpp
 
 #OBJB_FILES	=	${SRCB:.c=.o}
 OBJ_DIR		:=	./obj

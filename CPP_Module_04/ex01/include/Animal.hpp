@@ -2,6 +2,7 @@
 #ifndef ANIMAL_HPP
 #define ANIMAL_HPP
 
+#include <string>
 #include <iostream>
 
 class Animal {
@@ -12,9 +13,9 @@ class Animal {
         Animal(const Animal &obj);
         virtual ~Animal();
 
-        Animal &operator=(const Animal &obj);
+        Animal& operator=(const Animal &obj);
 
-        virtual void makeSound() const;
+        virtual void makeSound(void) const;
         std::string getType() const;
 };
 

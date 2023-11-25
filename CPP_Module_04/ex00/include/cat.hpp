@@ -4,12 +4,14 @@
 
 #include "animal.hpp"
 
-class Cat {
+class Cat : public Animal {
     public:
         Cat();
+        Cat(std::string);
         ~Cat();
 
-        makeSound();
+        Cat &operator=(const Cat &obj);
+        void makeSound() const;
 };
 
 #endif
