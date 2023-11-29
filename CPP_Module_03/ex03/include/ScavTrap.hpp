@@ -11,7 +11,9 @@ class ScavTrap : public virtual ClapTrap
 {
     private:
         bool gate_keep;
-
+	protected:
+		int attack_damage;
+		int energy_points;
     public:
         ScavTrap();
         ScavTrap(std::string name);
@@ -19,8 +21,6 @@ class ScavTrap : public virtual ClapTrap
 
         // operator 
         ScavTrap &operator=(const ScavTrap &obj);
-
-        void attack(const std::string& target);
 
         void guardGate();
 };

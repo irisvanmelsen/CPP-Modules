@@ -5,9 +5,6 @@
 #include "ScavTrap.hpp"
 
 class FragTrap : public virtual ClapTrap{
-    private:
-        bool gate_keep;
-
     public:
         FragTrap();
         FragTrap(std::string name);

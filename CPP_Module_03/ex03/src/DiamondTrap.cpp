@@ -40,10 +40,10 @@ DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &obj)
 	return (*this);
 }
 
-void	DiamondTrap::attack(const std::string &target)
+void DiamondTrap::status_check()
 {
-	ScavTrap::attack(target);
-	std::cout << "DiamondTrap attacks!" << std::endl;
+	std::cout << "attack damage: " << this->attack_damage << " energy points: "
+	<< this->energy_points <<" hitpoints: " <<this->hit_points << "\n";
 }
 
 void DiamondTrap::whoAmI()

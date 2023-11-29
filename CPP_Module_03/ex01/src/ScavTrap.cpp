@@ -7,7 +7,7 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
     this->name = "ScavTrap";
-    this->hit_points = 100;
+    this->hit_points = ClapTrap::hit_points;
     this->energy_points = 50;
     this->attack_damage = 20;
     this->gate_keep = false;
@@ -20,7 +20,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 ScavTrap::ScavTrap(std::string name) : ClapTrap()
 {
     this->name = name;
-    this->hit_points = 100;
+    this->hit_points = ClapTrap::hit_points;
     this->energy_points = 50;
     this->attack_damage = 20;
     this->gate_keep = false;
@@ -51,6 +51,8 @@ void ScavTrap::attack(const std::string& target)
 
 void    ScavTrap::guardGate()
 {
+	if (this->hit_points == 0)
+		std::cout << "ScavTrap " << this->name << " has no hp left to be in Gate keeper mode" << std::endl;
     std::cout << "ScavTrap " << this->name << " is now in Gate keeper mode" << std::endl;
     this->gate_keep = true;
 }

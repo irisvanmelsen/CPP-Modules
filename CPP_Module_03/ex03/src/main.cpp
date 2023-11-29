@@ -27,6 +27,7 @@ int main(void)
     // Fragton.beRepaired(1);
     // Fragton.attack("Evil-Fragton");
 
+	Diamond.status_check();
     Diamond.whoAmI();
     Diamond.attack("Evil-Diamond");
     Diamond.takeDamage(2);

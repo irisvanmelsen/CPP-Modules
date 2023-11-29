@@ -6,11 +6,9 @@
 
 FragTrap::FragTrap() : ClapTrap()
 {
-    // this->name = "FragTrap";
     this->hit_points = 100;
     this->energy_points = 100;
     this->attack_damage = 30;
-    this->gate_keep = false;
     std::cout << "Default FragTrap Constructor called" << std::endl;
 }
 
@@ -23,7 +21,6 @@ FragTrap::FragTrap(std::string name) : ClapTrap()
     this->hit_points = 100;
     this->energy_points = 100;
     this->attack_damage = 30;
-    this->gate_keep = false;
     std::cout << "FragTrap Constructor called" << std::endl;
 }
 
@@ -44,5 +41,7 @@ FragTrap	&FragTrap::operator=(const FragTrap &obj)
 
 void FragTrap::highFivesGuys(void)
 {
+	if (this->hit_points == 0)
+		std::cout << "FragTrap " << this->name << " has no hp points left to highfive " << std::endl;
     std::cout << "FragTrap " << this->name << " says: highfive anyone?" << std::endl;
 }

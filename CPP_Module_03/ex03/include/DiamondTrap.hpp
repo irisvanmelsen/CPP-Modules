@@ -8,6 +8,8 @@ class DiamondTrap : public FragTrap, public ScavTrap
 {
     private:
         std::string name;
+		using ScavTrap::energy_points;
+		using FragTrap::attack_damage;
 
     public:
         DiamondTrap();
@@ -17,7 +19,8 @@ class DiamondTrap : public FragTrap, public ScavTrap
         // operator 
         DiamondTrap &operator=(const DiamondTrap &obj);
 
-		void attack(const std::string &target);
+		void status_check();
+		using ScavTrap::attack;
         void whoAmI();
 };
 
