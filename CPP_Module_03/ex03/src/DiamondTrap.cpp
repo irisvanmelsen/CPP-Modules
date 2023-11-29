@@ -4,7 +4,7 @@
 // This default constructor initializes the name attribute with a default 
 // value of "Clapton" if no argument is provided when creating an instance of ClapTrap. 
 
-DiamondTrap::DiamondTrap() : ClapTrap()
+DiamondTrap::DiamondTrap() : ClapTrap("DiamondTrapclap_name")
 {
     this->name = "DiamondTrap";
     this->hit_points = FragTrap::hit_points;
@@ -16,9 +16,8 @@ DiamondTrap::DiamondTrap() : ClapTrap()
 // This parameterized constructor takes a std::string parameter name and sets the name 
 // attribute of the ClapTrap instance to the provided value.
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), FragTrap(name), ScavTrap(name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "clap_name"), FragTrap(), ScavTrap()
 {
-    ClapTrap::name = name + "clap_name";
     this->name = name;
     this->hit_points = FragTrap::hit_points;
     this->energy_points = ScavTrap::energy_points;
@@ -39,6 +38,12 @@ DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &obj)
 	this->hit_points = obj.hit_points;
 
 	return (*this);
+}
+
+void	DiamondTrap::attack(const std::string &target)
+{
+	ScavTrap::attack(target);
+	std::cout << "DiamondTrap attacks!" << std::endl;
 }
 
 void DiamondTrap::whoAmI()

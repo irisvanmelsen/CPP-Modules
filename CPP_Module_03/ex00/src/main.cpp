@@ -7,9 +7,8 @@ int main(void)
     ClapTrap Clapton;
 
     Clapton.attack("Evil-Clapton");
-    Clapton.takeDamage(2);
+    Clapton.takeDamage(0);
     Clapton.beRepaired(1);
-    Clapton.attack("Evil-Clapton");
     // Clapton.takeDamage(9);
     // Clapton.attack("Evil-Clapton");
 
@@ -21,6 +20,8 @@ int main(void)
     Clapton.attack("Evil-Clapton");
     Clapton.attack("Evil-Clapton");
     Clapton.attack("Evil-Clapton");
+	Clapton.takeDamage(10);
+	Clapton.takeDamage(20);
     Clapton.beRepaired(1);
 
     return (0);

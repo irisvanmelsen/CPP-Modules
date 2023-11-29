@@ -17,7 +17,5 @@ int main(void)
     Clapton.beRepaired(1);
     Clapton.attack("Evil-Clapton");
 
-
-
     return (0);
 }

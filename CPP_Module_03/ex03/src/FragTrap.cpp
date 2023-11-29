@@ -6,7 +6,7 @@
 
 FragTrap::FragTrap() : ClapTrap()
 {
-    this->name = "FragTrap";
+    // this->name = "FragTrap";
     this->hit_points = 100;
     this->energy_points = 100;
     this->attack_damage = 30;
@@ -21,8 +21,8 @@ FragTrap::FragTrap(std::string name) : ClapTrap()
 {
     this->name = name;
     this->hit_points = 100;
-    this->energy_points = 50;
-    this->attack_damage = 20;
+    this->energy_points = 100;
+    this->attack_damage = 30;
     this->gate_keep = false;
     std::cout << "FragTrap Constructor called" << std::endl;
 }

@@ -24,6 +24,7 @@ int main(void)
     Fragton.takeDamage(2);
     Fragton.beRepaired(1);
     Fragton.attack("Evil-Fragton");
+	Fragton.highFivesGuys();
 
     return (0);
 }

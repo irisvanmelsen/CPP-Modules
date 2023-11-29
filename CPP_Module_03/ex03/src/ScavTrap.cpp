@@ -6,7 +6,7 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-    this->name = "ScavTrap";
+    // this->name = "ScavTrap";
     this->hit_points = 100;
     this->energy_points = 50;
     this->attack_damage = 20;
@@ -34,19 +34,8 @@ ScavTrap::~ScavTrap()
 
 void ScavTrap::attack(const std::string& target)
 {
-    if (this->hit_points == 0)
-    {
-         std::cout << "ScavTrap " << this->name << " died earlier already r.i.p ✝." << std::endl;
-         return;
-    }
-    if (this->energy_points > 0)
-    {
-        std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " \
-            << this->attack_damage << " points of damage!" << std::endl;
-        this->energy_points--;
-    }
-    else
-        std::cout << "ScavTrap " << this->name << " has no energy points left to attack with!" << std::endl;
+	ClapTrap::attack(target);
+	std::cout << "ScavTrap attacks!" << std::endl;
 }
 
 void    ScavTrap::guardGate()

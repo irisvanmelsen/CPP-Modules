@@ -21,7 +21,7 @@ HEADER_DIR = include
 HEADERS = ClapTrap.hpp \
 		  ScavTrap.hpp \
 		  FragTrap.hpp \
-		  DiamondTrap.hpp \
+		  DiamondTrap.hpp 
 
 #OBJB_FILES	=	${SRCB:.c=.o}
 OBJ_DIR		:=	./obj
