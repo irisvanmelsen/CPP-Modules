@@ -26,6 +26,23 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap()
     std::cout << "ScavTrap Constructor called" << std::endl;
 }
 
+void ScavTrap::attack(const std::string& target)
+{
+    if (this->hit_points == 0)
+    {
+         std::cout << "ScavTrap " << this->name << " died earlier already r.i.p ✝." << std::endl;
+         return;
+    }
+    if (this->energy_points > 0)
+    {
+        std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " \
+            << this->attack_damage << " points of damage!" << std::endl;
+        this->energy_points--;
+    }
+    else
+        std::cout << "ScavTrap " << this->name << " has no energy points left to attack with!" << std::endl;
+}
+
 ScavTrap::~ScavTrap()
 {
     std::cout << "ScavTrap Destructor called" << std::endl;

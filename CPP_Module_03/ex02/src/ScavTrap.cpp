@@ -7,7 +7,7 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
     this->name = "ScavTrap";
-    this->hit_points = 100;
+    this->hit_points = ClapTrap::hit_points;
     this->energy_points = 50;
     this->attack_damage = 20;
     this->gate_keep = false;
