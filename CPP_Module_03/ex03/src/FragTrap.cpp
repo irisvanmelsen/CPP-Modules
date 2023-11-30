@@ -6,7 +6,7 @@
 
 FragTrap::FragTrap() : ClapTrap()
 {
-    this->hit_points = 100;
+    this->hit_points = ClapTrap::hit_points;
     this->energy_points = 100;
     this->attack_damage = 30;
     std::cout << "Default FragTrap Constructor called" << std::endl;
