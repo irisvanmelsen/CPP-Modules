@@ -14,7 +14,8 @@ endif
 
 # Headers
 HEADER_DIR = include
-HEADERS = Array.hpp
+HEADERS = Array.hpp /
+		  Array.tpp
 
 #OBJB_FILES	=	${SRCB:.c=.o}
 OBJ_DIR		:=	./obj
