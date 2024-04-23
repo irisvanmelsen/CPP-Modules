@@ -18,9 +18,10 @@ class Array {
 		Array<T>& operator=(const Array<T> &obj);
 
 		~Array();
-		class outOfBoundException : public std::exception();
+		class outOfBoundException : public std::exception {
 		public:
 			virtual const char * what() const throw();
+		};
 
 		int size() const;
 };

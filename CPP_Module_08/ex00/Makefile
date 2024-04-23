@@ -1,5 +1,5 @@
 
-NAME 		= 	Array
+NAME 		= 	Easyfind
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++98
@@ -14,8 +14,8 @@ endif
 
 # Headers
 HEADER_DIR = include
-HEADERS = Array.hpp \
-		  Array.tpp
+HEADERS = easyfind.hpp \
+		  easyfind.tpp
 
 #OBJB_FILES	=	${SRCB:.c=.o}
 OBJ_DIR		:=	./obj

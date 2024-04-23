@@ -9,7 +9,7 @@
 template <typename T>
 Array<T>::Array() : _n(1){
     std::cout << "Array's Default Custructor has been called!" << std::endl;
-    array = new T[_n];
+    _array = new T[_n];
 }
 
 // construction with an unsigned int n as a parameter: creates an array of n elements initialized by default
@@ -28,7 +28,7 @@ Array<T>::Array(const Array<T> &obj) {
 	for (int i = 0; i < _n; i++) {
 		this->_array[i] = obj._array[i];
 	}
-	return this->_array;
+	// return this->_array;
 }
 
 // destructor
@@ -36,7 +36,7 @@ template <typename T>
 Array<T>::~Array() {
     std::cout << "Array's Destructor has been called!" << std::endl;
     if (this->_array)
-        delete[] array;
+        delete[] _array;
 }
 
 //  a member function size() that returns the number of elements in the array
@@ -48,7 +48,7 @@ int Array<T>::size() const{
 // when accessing an element with the [ ] operator, if its index is out of bounds, an std::exception is thrown.
 template <typename T>
 const char * Array<T>::outOfBoundException::what() const throw() {
-	return ("Index is out of bound!")
+	return ("Index is out of bound!");
 }
 
 // elements can be accessed through the subscript operator: [ ]
@@ -56,9 +56,9 @@ template <typename T>
 T& Array<T>::operator[](int i) {
 	if (i < 0 || i >= _n) {
 		throw (outOfBoundException());
-		return (array[0])
+		return (_array[0]);
 	}
-	return (array[i]);
+	return (_array[i]);
 }
 
 // modifying either the original array or its copy after copying mustn’t affect the other array
