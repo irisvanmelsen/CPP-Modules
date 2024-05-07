@@ -2,13 +2,16 @@
 #define EASYFIND_HPP
 
 #include "string.h"
-#include "iostream.h"
+#include <iostream>
 #include <algorithm>
+#include <vector>
+#include <vector>
+#include <list>
 
 
 template <typename T>
-int *easyfind(T &container, int target);
+int easyfind(T &container, int target);
 
-#include "Easyfind.tpp"
+#include "easyfind.tpp"
 
 #endif

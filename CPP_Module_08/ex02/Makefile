@@ -1,12 +1,12 @@
 
-NAME 		= 	Easyfind
+NAME 		= 	Mutant
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++11
 CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc
-SRC			=	main.cpp
+SRC			=	main.cpp 
 				
 ifdef DEBUG
 	FLAGS += -g
@@ -14,8 +14,8 @@ endif
 
 # Headers
 HEADER_DIR = include
-HEADERS = easyfind.hpp \
-		  easyfind.tpp
+HEADERS = MutantStack.hpp \
+		  MutantStack.tpp
 
 #OBJB_FILES	=	${SRCB:.c=.o}
 OBJ_DIR		:=	./obj

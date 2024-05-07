@@ -14,11 +14,11 @@
 // (values.begin()) and the iterator it where the element was found.
 
 template <typename T>
-int *easyfind(T &container, int target) {
-	typename T::iterator it = std::find(values.begin(), values.end(), search);
-	if (it != values.end()) {	
-        std::cout << "Value found at index: " << std::distance(values.begin(), it) << std::endl;
-        return std::distance(values.begin(), it);
+int easyfind(T &container, int target) {
+	typename T::iterator it = std::find(container.begin(), container.end(), target);
+	if (it != container.end()) {	
+        std::cout << "Value found at index: " << std::distance(container.begin(), it) << std::endl;
+        return std::distance(container.begin(), it);
 	} else {
         std::cout << "Value not found!" << std::endl;
         return -1;

@@ -1,12 +1,13 @@
 
-NAME 		= 	Easyfind
+NAME 		= 	Span
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++11
 CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc
-SRC			=	main.cpp
+SRC			=	main.cpp \
+				Span.cpp
 				
 ifdef DEBUG
 	FLAGS += -g
@@ -14,8 +15,7 @@ endif
 
 # Headers
 HEADER_DIR = include
-HEADERS = easyfind.hpp \
-		  easyfind.tpp
+HEADERS = Span.hpp
 
 #OBJB_FILES	=	${SRCB:.c=.o}
 OBJ_DIR		:=	./obj
