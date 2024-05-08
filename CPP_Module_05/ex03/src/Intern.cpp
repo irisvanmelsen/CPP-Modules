@@ -26,18 +26,23 @@ AForm *Intern::makeForm(std::string form, std::string target){
 		return (NULL);
 	}
 	for (int i = 0; i < 3; i ++){
-		if (form.compare(forms[i])){
+		if (form.compare(forms[i]) == 0){
 			switch(i){
 				case 0:
-					return (new RobotomyRequestForm(target));
+					std::cout << "Intern creates " << forms[i] << " for: " << target << std::endl;
+					return (new PresidentialPardonForm(target));
 				case 1:
-            		return (new ShrubberyCreationForm(target));
+					std::cout << "Intern creates " << forms[i] << " for: " << target << std::endl;
+            		return (new RobotomyRequestForm(target));
 				case 2:
-            		return (new PresidentialPardonForm(target));
+					std::cout << "Intern creates " << forms[i] << " for: " << target << std::endl;
+					return (new ShrubberyCreationForm(target));
         		default:
             std::cout << "Can't create form :( " << std::endl;
             return NULL;
 			}
 		}
 	}
+	std::cerr << "Explicit Error Message!" << std::endl;
+	return NULL;
 }

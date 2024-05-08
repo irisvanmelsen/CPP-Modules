@@ -2,7 +2,7 @@
 NAME 		= 	AForm
 
 #UTILS
-FLAGS 		=	-I. -Wall -Werror -Wextra -std=c++98
+FLAGS 		=	-I -Wall -Werror -Wextra -std=c++98
 CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc

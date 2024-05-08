@@ -18,6 +18,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
     return *this;
 }
 
-void PresidentialPardonForm::execute() const {
+void PresidentialPardonForm::exe() const {
     std::cout << this->_target << " have been pardonned by Zaphod Beeblebrox" << std::endl;
 }

@@ -16,8 +16,8 @@ public:
 
     RobotomyRequestForm(const RobotomyRequestForm &obj);
     RobotomyRequestForm &operator=(const RobotomyRequestForm &obj);
-	
-	void execute() const;
+
+	virtual void exe() const; // allows your application to handle different form types correctly using the same interface
 };
 
 #endif

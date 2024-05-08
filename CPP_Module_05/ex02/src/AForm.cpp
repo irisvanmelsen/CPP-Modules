@@ -49,10 +49,13 @@ void	AForm::execute(Bureaucrat const &executor) const {
 		std::cout << _name << "can't be executed :( !" << std::endl;
 		throw GradeTooLowException();
 	}
-	if (this->is_FormSigned() == false)
-		std::cout << _name << "can't be executed :( !" << std::endl;
-	else
+	if (this->is_FormSigned() == false) {
+		throw AForm::ExecuteException();
+	}
+	else {
+		exe();
 		std::cout << _name << "is executed :) !" << std::endl;
+	}
 }
 
 const std::string& AForm::getName() const {

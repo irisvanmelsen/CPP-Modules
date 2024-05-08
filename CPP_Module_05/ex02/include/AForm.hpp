@@ -22,19 +22,30 @@ class AForm {
 		AForm();
 		AForm(std::string, int, int);
 		AForm &operator=(const AForm &obj);
+		AForm(const AForm& obj);
 		virtual ~AForm();
 
 		class GradeTooHighException : public std::exception {
 			public:
   			  const char *what() const throw();
 		};
+
 		class GradeTooLowException : public std::exception {
 			public:
   			  const char *what() const throw();
 		};
 
+		class ExecuteException : public std::exception {
+				public:
+			const char *what() const throw()
+		{
+			return ("You can't execute a form that is not yet signed!");
+		}		
+		};
+
 		void	beSigned(Bureaucrat &Bureau);
-		virtual void 	execute();
+		void 	execute(Bureaucrat const &executor) const;
+		virtual void exe() const = 0;
 		int		get_GradeSign() const;
 		int		get_GradeExec() const;
 		int		get_GradeReq() const;

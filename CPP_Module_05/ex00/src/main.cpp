@@ -23,7 +23,7 @@ int	main(void)
 
 	std::cout << std::endl << number_one << std::endl;
 	std::cout << std::endl << number_hundredfifty << std::endl;
-
+ 
 	try
 	{
 		number_hundredfifty.Increment(20);

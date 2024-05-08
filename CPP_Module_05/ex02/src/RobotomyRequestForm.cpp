@@ -21,7 +21,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj) {
     *this = obj;
 }
 
-void RobotomyRequestForm::execute() const{
+void RobotomyRequestForm::exe() const{
 	std::cout << "DrrrRrrRriiiiliiing"<<std::endl;
 	std::srand(static_cast<unsigned int>(std::time(NULL)));
 	if (rand() % 2 == 1) // generates a random number and checks if it is odd (50/50 chance)

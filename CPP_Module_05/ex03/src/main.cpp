@@ -3,6 +3,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 // When an exception of type std::runtime_error is thrown
 // the catch block catches it as a std::exception
@@ -10,29 +11,24 @@
 
 int	main(void)
 {
-	std::cout << std::endl << "----------------" << std::endl;
-	std::cout << "CONSTRUCTORS BEING CALLED:" << std::endl;
-	std::cout << "----------------" << std::endl;
-	Bureaucrat number_one("one", 1);
-	Bureaucrat number_seventytwo("seventytwo", 72);
-	ShrubberyCreationForm Shrub("Shrubbery");
-	RobotomyRequestForm Robo("Robot");
-	PresidentialPardonForm Pres("President");
-	std::cout << std::endl;
+	Intern someRandomIntern;
+	Intern someRandomIntern2;
+	Intern someRandomIntern3;
+	Intern someRandomIntern4;
+	AForm* rrf;
+	AForm* rrf2;
+	AForm* rrf3;
+	AForm* rrf4;
 
-	try {
-		std::cout << std::endl << "----------------" << std::endl;
-		std::cout << "TRYING FORMS:" << std::endl;
-		std::cout << "----------------" << std::endl;
-		number_one.signForm(Shrub);
-		number_one.signForm(Robo);
-		number_one.signForm(Robo);
-		number_one.executeForm(Pres);
-		number_one.executeForm(Robo);
-		number_one.executeForm(Robo);
-		std::cout << std::endl;
-	}
-	catch (std::exception& e){
-		std::cout << "Exception:" << e.what() << std::endl;
-	}
+	std::cout << std::endl << "----------------" << std::endl;
+    std::cout << "TESTS:" << std::endl;
+    std::cout << "----------------" << std::endl;
+	rrf = someRandomIntern.makeForm("Robotomy", "Bender");
+	std::cout << "----------------" << std::endl;
+	rrf2 = someRandomIntern2.makeForm("Shrubbery", "Bender2");
+	std::cout << "----------------" << std::endl;
+	rrf3 = someRandomIntern3.makeForm("Presidential", "Bender3");
+	std::cout << "----------------" << std::endl;
+	rrf4 = someRandomIntern3.makeForm("FAIL", "FAIL");
+	std::cout << "----------------" << std::endl;
 }

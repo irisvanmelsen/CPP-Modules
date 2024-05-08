@@ -17,7 +17,8 @@ public:
     ShrubberyCreationForm(const ShrubberyCreationForm &obj);
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &obj);
 
-	void execute() const;
+	virtual void exe() const; // allows your application to handle different form types correctly using the same interface
 };
+
 
 #endif
