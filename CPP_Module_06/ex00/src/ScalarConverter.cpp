@@ -1,5 +1,22 @@
 #include "ScalarConverter.hpp"
 
+// declaring a constructor private to prevent the instantiation of the
+// class from outside its own member functions or friends
+// to restrict to only contain statics and to limit the creation of instances of a class
+ScalarConverter::ScalarConverter(){
+    ;
+}
+
+static bool isdigit_in_str(const std::string &str)
+{
+	for (char c : str)
+	{
+		if (std::isdigit(c))
+			return (true);
+	}
+	return (false);
+}
+
 static void char_output(char c)
 {
     std::cout << "char: '" << c << "'" << std::endl;
@@ -40,20 +57,21 @@ static void float_output(float fl, const std::string &str)
 
 static void double_output(double doubl, const std::string &str)
 {
-	if (str == "nan" || str == "-inf" || str == "+inf")
+	if (str == "nan" || str == "-inf" || str == "+inf") {
 	    std::cout << "char: " << "impossible" << std::endl;
 		std::cout << "int: " << "impossible" << std::endl;
 		std::cout << "float: " << static_cast<float>(doubl) << "f" << std::endl;
 		std::cout << "double: " << str << std::endl;
 		return;
-    if ((doubl > 2147483647 && doubl < -2147483648) && !isprint(doubl))
-	   std::cout << "char: '" << "Non displayable" << "'" << std::endl;
+	}
+    if ((doubl <= 2147483647 && doubl >= -2147483648) && isprint(doubl))
+		std::cout << "char: '" << static_cast<char>(doubl) << "'" << std::endl;
     else
-        std::cout << "char: '" << static_cast<char>(doubl) << "'" << std::endl;
+        std::cout << "char: '" << "Non displayable" << "'" << std::endl;
     std::cout << "int: " << static_cast<int>(doubl) << std::endl;
-    std::cout << "float: " << static_cast<float>(doubl) << std::endl;
+    std::cout << "float: " << static_cast<float>(doubl) << "f" << std::endl;
     std::cout << "double: " << doubl << std::endl;
-}
+}	
 
 static void failed_output(void)
 {
@@ -75,8 +93,15 @@ static bool check_if_int(const std::string &str) {
 	int str_length = str.size() - 1;
 	for (int i = 0; i < str_length; i++)
 	{
-		if (!isdigit(str[i]) && str[0] != '-')
+		if (!isdigit(str[i]))
+		{
+			if (str[i] == '.') {
+				return (false);
+			if (str[0] == '-')
+				continue;
+			}
 			return (false);
+		}
 	}
 	try {
 		std::stoi(str); // string to int
@@ -97,6 +122,8 @@ static bool check_if_int(const std::string &str) {
 static bool	check_if_float(const std::string &str) {
 	if (str.empty() || str.size() == 1)
 		return (false);
+	if (!isdigit_in_str(str))
+		return (false);
 	try {
 		std::stof(str); // string to float
 			return (true);
@@ -115,11 +142,10 @@ static bool	check_if_float(const std::string &str) {
 }
 
 static bool check_if_double(const std::string &str) {
-	if (str.empty() || str.size() == 1)
+	if (str.empty() || str.size() == 1)	
 		return (false);
-	double dbl;
 	try {
-		dbl = std::stod(str); // string to double
+		std::stod(str); // string to double
 			return (true);
 	}
 	catch (const std::invalid_argument &e)
@@ -135,6 +161,9 @@ static bool check_if_double(const std::string &str) {
 	return (true);
 }
 
+// nan means not a number
+// -inf negative infinity (value lower than any real number)
+// +inf positive infinity (value higher than any real number)
 static t_type	find_type(const std::string &str) {
 	if ((str == "nan" || str == "-inf" || str == "+inf"))
 		return (DOUBLE);
