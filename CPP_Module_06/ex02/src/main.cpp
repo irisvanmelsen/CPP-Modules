@@ -9,12 +9,12 @@
 Base *generate(void)
 {
 	int i = rand();
-	if (i == 0)
+	if (i % 3 == 0)
 	{
 		std::cout << "returning new BaseA!" << std::endl;
 		return (new BaseA);
 	}
-	if (i == 1)
+	if (i % 3 == 1)
 	{
 		std::cout << "returning new BaseB!" << std::endl;
 		return (new BaseB);
@@ -70,9 +70,20 @@ int main(void)
 {
 	srand((unsigned)time(NULL));
 	Base *base = generate();
+	Base *base2 = generate();
+	Base *base3 = generate();
 	std::cout << "pointer: ";
 	identify(base);
 	std::cout << std::endl << "address: ";
 	identify(*base);
+	std::cout << "pointer: ";
+	identify(base2);
+	std::cout << std::endl << "address: ";
+	identify(*base2);
+	std::cout << "pointer: ";
+	identify(base3);
+	std::cout << std::endl << "address: ";
+	identify(*base3);
 	delete base;
+	delete base2;
 }

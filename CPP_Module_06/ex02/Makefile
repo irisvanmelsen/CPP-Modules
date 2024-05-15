@@ -2,7 +2,7 @@
 NAME 		= 	Base
 
 #UTILS
-FLAGS 		=	-Wall -Werror -Wextra -std=c++98
+FLAGS 		=	-Wall -Werror -Wextra -std=c++11
 CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc
