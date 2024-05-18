@@ -15,8 +15,8 @@ void print_ch(T &argument){
 }
 
 template <typename T, typename F>
-void iter(T *array, int length, F function) {
-	for (int i = 0; i < length; i++)
+void iter(T *array, size_t length, F function) {
+	for (size_t i = 0; i < length; i++)
 		function(array[i]);
 }
 

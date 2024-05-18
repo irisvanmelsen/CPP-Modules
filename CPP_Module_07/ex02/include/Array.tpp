@@ -28,7 +28,6 @@ Array<T>::Array(const Array<T> &obj) {
 	for (int i = 0; i < _n; i++) {
 		this->_array[i] = obj._array[i];
 	}
-	// return this->_array;
 }
 
 // destructor
