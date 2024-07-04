@@ -27,13 +27,9 @@ Span &Span::operator=(const Span &obj) {
 	return *this;
 }
 
-// This class will have a member function called addNumber() to add a single number to the Span
-// It will be used in order to fill it. Any attempt to add a new element if there are already N
-//  elements stored should throw an exception
-
 // vector::push_back: adds a new element at the end of the vector, after its current last element
-
 // std::out_of_range: reports errors that are consequence of attempt to access elements out of defined range
+
 void Span::addNumber(int index) {
 	if (_array.size() < N) {
 		_array.push_back(index);
@@ -43,9 +39,6 @@ void Span::addNumber(int index) {
 		throw std::out_of_range("can't add more numbers to vector, max has been reached!");
 	}
 }
-
-// will respectively find out the shortest span between all the numbers stored, and return it
-// if there are no numbers stored, or only one, no span can be found. Thus, throw an exception
 
 // std::logic_error: it reports errors that are a consequence of faulty logic within the program
 // such as violating logical preconditions or class invariants and may be preventable
