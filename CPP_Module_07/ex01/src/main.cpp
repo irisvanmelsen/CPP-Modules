@@ -17,5 +17,5 @@ int main(void) {
 	int ints[] = {1, 2, 3, 4};
 	int ints_length = sizeof(ints) / sizeof(ints[0]);
 	iter(ints, ints_length, print_ch<int>);
-	std::cout << std::endl;
+	std::cout << std::endl;	
 }	

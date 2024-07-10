@@ -1,5 +1,5 @@
 
-NAME 		= 	btc
+NAME 		= 	ex01
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++11
@@ -7,7 +7,7 @@ CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc
 SRC			=	main.cpp \
-				BitcoinExchange.cpp
+				RPN.cpp
 				
 ifdef DEBUG
 	FLAGS += -g
