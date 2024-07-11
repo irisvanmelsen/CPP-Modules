@@ -1,5 +1,5 @@
 
-NAME 		= 	ex00
+NAME 		= 	btc
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++11
