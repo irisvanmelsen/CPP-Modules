@@ -1,6 +1,7 @@
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange() {
+<<<<<<< HEAD
     std::cout << "BitcoinExchange's Default Constructor has been called" << std::endl;
 }
 
@@ -127,3 +128,24 @@ void BitcoinExchange::processInput(const std::string &filename) {
         }
     }
 }
+=======
+	std::cout << "BitcoinExchange's default deconstructor has been called" << std::endl;
+}
+
+BitcoinExchange::BitcoinExchange(BitcoinExchange &obj) {
+	std::cout << "BitcoinExchange's default copy constructor has been called" << std::endl;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange &in) {
+	if (this != &in)
+	{
+		this->
+	}
+	std::cout << "BitcoinExchange's operator overload has been called" << std::endl;
+	return ();
+}
+
+void BitcoinExchange::GoThroughData(std::string in) {
+
+}
+>>>>>>> 42fa59ea46b4358f2e186843b7bc2e236329a847

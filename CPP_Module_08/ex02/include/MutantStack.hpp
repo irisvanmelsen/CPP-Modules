@@ -26,7 +26,7 @@ class MutantStack : public std::stack<T> {
 
 		MutantStack &operator=(const MutantStack &obj);
 
-		// creating your own name "iterator" within your class to refer to the iterator type of the underlying container that std::stack uses
+		// creating own "iterator" within your class to refer to the iterator type of the underlying container that std::stack uses
 		typedef typename std::stack<T>::container_type::iterator iterator;
 
 		iterator begin();
