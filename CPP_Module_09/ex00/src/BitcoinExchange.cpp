@@ -1,7 +1,6 @@
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange() {
-<<<<<<< HEAD
     std::cout << "BitcoinExchange's Default Constructor has been called" << std::endl;
 }
 
@@ -23,22 +22,22 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj) {
 }
 
 bool BitcoinExchange::isValidDate(const std::string &date) {
-    std::regex pattern(R"(^\d{4}-\d{2}-\d{2}$)");
+    std::regex pattern(R"(^\d{4}-\d{2}-\d{2}$)"); // 4 digits, 2 digits, 2 digits
     return std::regex_match(date, pattern);
 }
 
-bool BitcoinExchange::isValidValue(const std::string &value) {
+bool BitcoinExchange::CheckValue(const std::string &value) {
     try {
-        double val = std::stod(value);
-        return (val >= 0 && val <= 1000);
-    } catch (...) {
-        return false;
+        std::stod(value);
+        return (true);
+    } catch (...) { // catch (...) can handle any type of exception
+        return (false);
     }
 }
 
 std::string BitcoinExchange::getClosestDate(const std::string &date) {
-    auto it = data.lower_bound(date);
-    if (it == data.end() || (it != data.begin() && it->first != date)) {
+    auto it = data.lower_bound(date); // returns iterator to first element less than date
+    if (it == data.end() || (it != data.begin() && it->first != date)) { // it == end means no data greater than it, other option means lowerbound found data greater
         --it;
     }
     return it->first;
@@ -56,7 +55,7 @@ void BitcoinExchange::checkInputFormat(const std::string &line) {
         throw std::runtime_error("Invalid date format: " + date);
     }
 
-    if (!isValidValue(value)) {
+    if (!CheckValue(value)) {
         throw std::runtime_error("Invalid value format: " + value);
     }
 }
@@ -72,24 +71,21 @@ void BitcoinExchange::loadDatabase(const std::string &filename) {
     }
 
     std::string line;
-    std::getline(file, line);
-    if (line != "date | value") {
-        throw std::runtime_error("Incorrect data, file should start with 'date | value'");
-    }
+    std::getline(file, line); // skip first line
 
     while (std::getline(file, line)) {
-        std::size_t delimiterPos = line.find('|');
+        std::size_t delimiterPos = line.find(',');
         if (delimiterPos == std::string::npos) {
             throw std::runtime_error("Incorrect format: " + line);
         }
 
-        std::string date = line.substr(0, delimiterPos - 1);
-        std::string valueStr = line.substr(delimiterPos + 2);
+        std::string date = line.substr(0, delimiterPos);
+        std::string valueStr = line.substr(delimiterPos + 1);
 
         if (!isValidDate(date)) {
             throw std::runtime_error("Invalid date format: " + date);
         }
-        if (!isValidValue(valueStr)) {
+        if (!CheckValue(valueStr)) {
             throw std::runtime_error("Invalid value format: " + valueStr);
         }
 
@@ -118,13 +114,22 @@ void BitcoinExchange::processInput(const std::string &filename) {
             std::string valueStr = line.substr(13);
             double value = std::stod(valueStr);
 
+            if (value < 0) {
+                std::cerr << "Error: not a positive number." << std::endl;
+                continue;
+            }
+            if (value > 1000) {
+                std::cerr << "Error: too large a number." << std::endl;
+                continue;
+            }
+
             std::string closestDate = getClosestDate(date);
             double exchangeRate = data[closestDate];
             double result = value * exchangeRate;
 
             std::cout << date << " => " << value << " = " << result << std::endl;
-        } catch (const std::exception &e) {
-            std::cerr << "Error: " << e.what() << std::endl;
+        } catch (const std::runtime_error &e) {
+            std::cerr << "Error: bad input => " << line << std::endl;
         }
     }
 }

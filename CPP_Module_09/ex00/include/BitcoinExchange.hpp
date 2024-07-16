@@ -5,6 +5,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <map>
+#include <regex>
 
 
 
@@ -19,9 +20,14 @@ class BitcoinExchange {
 		BitcoinExchange(const BitcoinExchange &obj);
 		BitcoinExchange &operator=(const BitcoinExchange &obj);
 
-		void go_through_Data(std::string const &in);
-		void go_through_Date(std::string const &line);
-		bool digits_in_Date(const std::string &str);
+		bool isValidDate(const std::string &data);
+		bool CheckValue(const std::string &value);
 
+		std::string getClosestDate(const std::string &date);
+		void checkInputFormat(const std::string &line);
+		void loadDatabase(const std::string &filename);
+		void processInput(const std::string &filename);
 
 };
+
+#endif

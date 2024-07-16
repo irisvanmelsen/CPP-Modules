@@ -1,5 +1,5 @@
 
-NAME 		= 	RPN
+NAME 		= 	PmergeMe
 
 #UTILS
 FLAGS 		=	-Wall -Werror -Wextra -std=c++11
@@ -7,7 +7,7 @@ CC 			= 	c++
 RM 			=	rm -rf
 AR			=	ar -rc
 SRC			=	main.cpp \
-				RPN.cpp
+				PmergeMe.cpp
 				
 ifdef DEBUG
 	FLAGS += -g
@@ -15,7 +15,7 @@ endif
 
 # Headers
 HEADER_DIR = include
-HEADERS = RPN.hpp
+HEADERS = PmergeMe.hpp
 
 #OBJB_FILES	=	${SRCB:.c=.o}
 OBJ_DIR		:=	./obj

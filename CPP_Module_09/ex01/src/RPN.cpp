@@ -1,37 +1,69 @@
 #include "RPN.hpp"
 
-int RPN::do_calculation(std::string &arg, char calc) {
-	int num1;
-	int num2;
-
-	if (arg.size() < 2) {
+int RPN::do_calculation(std::stack<int>& stack, char calc) {
+	if (stack.size() < 2) {
 		std::cout << "Too little arguments to make calculation!" << std::endl;
 		return (-1);
 	}
-	
-	if (calc == '+') {
+	int num2 = stack.top(); // top element of stack is stored in num2;
+	stack.pop();
+	int num1 = stack.top(); // next top element is stored in num1;
+	stack.pop();
+	int result;
 
+	switch (calc) {
+		case '+':
+			result = num1 + num2;
+			break;
+		case '-':
+			result = num1 - num2;
+			break;
+		case '*':
+			result = num1 * num2;
+			break;
+		case '/':
+			if (num2 == 0) {
+				std::cout << "Error: Division by zero!" << std::endl;
+				return -1;
+			}
+			result = num1 / num2;
+			break;
+		default:
+			std::cout << "Error: Invalid operator!" << std::endl;
+			return -1;
 	}
-
+	stack.push(result);
+    return 0;
 }
 
 bool RPN::is_cor_digit(char &c) {
-	if (c >= 0 && c <= 9)
+	if (c >= '0' && c <= '9')
 		return (true);
 	return (false);
 }
 
-int RPN::calculate_arg(std::string &arg) {
-	bool no_digit = false;
-	std::stack<int> stack;
-	for (int i = 0; arg[i] != '\0'; i++) {
-		if (arg[i] == '+' || arg[i] == '-' || arg[i] == '/' || arg[i] == '*')
-		{
-			no_digit = true;
-			do_calculation(arg, arg[i]);
-		}
-		if (no_digit == false && !is_cor_digit(arg[i]) || !isspace(arg[i]))
-			std::cout << "Invalid Argument!" << std::endl;
-		no_digit = false;
-	}
+int RPN::calculate_arg(const std::string &arg) {
+    std::stack<int> stack;
+    std::istringstream iss(arg);
+    std::string token;
+
+    while (iss >> token) {
+        if (token.size() == 1 && (token[0] == '+' || token[0] == '-' || token[0] == '/' || token[0] == '*')) {
+            if (do_calculation(stack, token[0]) == -1) {
+                return -1;
+            }
+        } else if (token.size() == 1 && is_cor_digit(token[0])) {
+            stack.push(token[0] - '0');
+        } else {
+            std::cout << "Error: Invalid argument!" << std::endl;
+            return -1;
+        }
+    }
+    if (stack.size() != 1) {
+        std::cout << "Error: Invalid RPN expression!" << std::endl;
+        return -1;
+    }
+
+    std::cout << stack.top() << std::endl;
+    return 0;
 }
