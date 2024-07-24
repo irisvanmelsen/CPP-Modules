@@ -19,6 +19,11 @@ class PmergeMe {
 		PmergeMe(const PmergeMe &obj);
 		PmergeMe &operator=(const PmergeMe &obj);
 
+		void	SortData();
+
+		template <typename T, typename P> T SortAll(T& container, P& pairs);
+		template <typename T> void PrintAnyArray(T array);
+
 };
 
 #endif
