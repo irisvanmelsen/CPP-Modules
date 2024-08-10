@@ -2,28 +2,60 @@
 #define PMERGEME_HPP
 
 #include <iostream>
-#include <string>
 #include <vector>
 #include <deque>
+#include <string>
+#include <exception>
+#include <iomanip>
+#include <algorithm>
+#include <stdexcept>
 
 class PmergeMe {
-	private:
-		std::vector<int> _vector;
-		std::deque<int> _deque;
+public:
+    PmergeMe();
+    PmergeMe(const PmergeMe &obj);
+    ~PmergeMe();
+    PmergeMe &operator=(const PmergeMe &obj);
 
-		double _vect_time;
-		double _deq_time;
-	public:
-		PmergeMe();
-		~PmergeMe();
-		PmergeMe(const PmergeMe &obj);
-		PmergeMe &operator=(const PmergeMe &obj);
+    void SortData();
 
-		void	SortData();
+    // Exception classes
+    class InvalidNumbersException : public std::exception {
+    public:
+        const char* what() const throw();
+    };
 
-		template <typename T, typename P> T SortAll(T& container, P& pairs);
-		template <typename T> void PrintAnyArray(T array);
+    class DoubleNumbersException : public std::exception {
+    public:
+        const char* what() const throw();
+    };
 
+    // Public method to add numbers from the command line arguments
+    void AddNumberToBoth(const char* number);
+
+private:
+    std::vector<int> _vector;
+    std::deque<int> _deque;
+    double _vect_time;
+    double _deq_time;
+
+    template <typename T>
+    T SortAll(T& container);
+
+    template <typename T>
+    void PrintAnyArray(T array);
+
+    template <typename T>
+    T Merge(T &left, T &right);
+
+    template <typename T>
+    T MergeSort(T &container);
+
+    template <typename T>
+    T InsertionSort(T& result, T& temp, int straggler);
+
+    void PrintTime(double time, bool is_vec);
+    void CheckDoubles(std::vector<int> container);
 };
 
 #endif
