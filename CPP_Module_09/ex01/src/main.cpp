@@ -1,18 +1,10 @@
 #include "RPN.hpp"
 
-int main(int argc, char **argv) {
-    if (argc != 2) {
-        std::cerr << "Usage: ./RPN <polish notation expression>" << std::endl;
-        return 1;
-    }
-
-    try {
-        RPN rpn;
-        rpn.calculate(argv[1]);
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-        return 1;
-    }
-
-    return 0;
+int main (int argc, char **argv) {
+	if (argc == 2) {
+		RPN rpn;
+		rpn.calculate_arg(argv[1]);
+	}
+	else
+		std::cout << "Can only run with two arguments: ./RPN and polish notation" << std::endl;
 }

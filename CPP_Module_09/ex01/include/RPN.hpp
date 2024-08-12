@@ -1,4 +1,5 @@
 #ifndef RPN_HPP
+#define RPPN_HPP
 #define RPN_HPP
 
 #include <iostream>
@@ -8,9 +9,9 @@
 
 class RPN {
 	public:
-		bool is_cor_digit(char c);
-		int operation(std::stack<std::string>& stak, const std::string& token, const std::string& num_2, const std::string& num_1);
-		int calculate(const std::string& str);
+		int calculate_arg(const std::string &arg);
+		bool is_cor_digit(char &c);
+		int do_calculation(std::stack<int>& stack, char calc);
 };
 
 #endif
