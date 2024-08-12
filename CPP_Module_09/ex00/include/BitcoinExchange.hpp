@@ -20,7 +20,7 @@ class BitcoinExchange {
 		BitcoinExchange(const BitcoinExchange &obj);
 		BitcoinExchange &operator=(const BitcoinExchange &obj);
 
-		bool isValidDate(const std::string &data);
+		void isValidDate(const std::string &data);
 		bool CheckValue(const std::string &value);
 
 		std::string getClosestDate(const std::string &date);

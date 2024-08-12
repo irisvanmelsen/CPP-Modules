@@ -119,7 +119,10 @@ void PmergeMe::AddNumberToBoth(const char* number) {
     int num;
     try {
         num = std::stoi(number);  // Convert the string to an integer
-    } catch (const std::exception& e) {
+		if (num < 0) {
+            throw InvalidNumbersException();  // If the number is negative, throw your custom exception
+		}
+	} catch (const std::exception& e) {
         throw InvalidNumbersException();  // If there's an error in conversion, throw your custom exception
     }
     _vector.push_back(num);  // Add the number to the vector

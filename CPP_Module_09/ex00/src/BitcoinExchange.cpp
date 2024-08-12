@@ -21,9 +21,24 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj) {
     return *this;
 }
 
-bool BitcoinExchange::isValidDate(const std::string &date) {
-    std::regex pattern(R"(^\d{4}-\d{2}-\d{2}$)"); // 4 digits, 2 digits, 2 digits
-    return std::regex_match(date, pattern);
+void BitcoinExchange::isValidDate(const std::string &date) {
+    if (date.size() != 10 || date[4] != '-' || date[7] != '-') {
+        throw std::runtime_error("Invalid date format: " + date);
+    }
+
+    int year = std::stoi(date.substr(0, 4));
+    int month = std::stoi(date.substr(5, 2));
+    int day = std::stoi(date.substr(8, 2));
+
+    if (year < 2009 || year > 2022) {
+        throw std::runtime_error("Year out of range: " + date);
+    }
+    if (month < 1 || month > 12) {
+        throw std::runtime_error("Month out of range: " + date);
+    }
+    if (day < 1 || day > 31) {
+        throw std::runtime_error("Day out of range: " + date);
+    }
 }
 
 bool BitcoinExchange::CheckValue(const std::string &value) {
@@ -51,9 +66,7 @@ void BitcoinExchange::checkInputFormat(const std::string &line) {
     std::string date = line.substr(0, 10);
     std::string value = line.substr(13);
 
-    if (!isValidDate(date)) {
-        throw std::runtime_error("Invalid date format: " + date);
-    }
+	isValidDate(date);
 
     if (!CheckValue(value)) {
         throw std::runtime_error("Invalid value format: " + value);
@@ -82,9 +95,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename) {
         std::string date = line.substr(0, delimiterPos);
         std::string valueStr = line.substr(delimiterPos + 1);
 
-        if (!isValidDate(date)) {
-            throw std::runtime_error("Invalid date format: " + date);
-        }
+        isValidDate(date);
         if (!CheckValue(valueStr)) {
             throw std::runtime_error("Invalid value format: " + valueStr);
         }
