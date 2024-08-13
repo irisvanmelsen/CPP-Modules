@@ -20,8 +20,8 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &obj) {
     return *this;
 }
 
-template <typename T>
-T PmergeMe::SortAll(T& container) {
+template <typename T, typename P>
+T PmergeMe::SortAll(T& container, P& pairs) {
     int unpaired_elem;
     if (container.size() % 2 != 0) { // checks whether container is odd
         auto it = container.end();
@@ -32,7 +32,6 @@ T PmergeMe::SortAll(T& container) {
         unpaired_elem = -1; // there is no unpaired element
     }
 
-    std::vector<std::pair<int, int>> pairs;
     for (size_t i = 0; i + 1 < container.size(); i += 2) { // loops in steps of 2 so pairs are formed
         if (container[i] > container[i + 1]) // checks whether the pair needs a swap
             std::swap(container[i], container[i + 1]);
@@ -150,7 +149,8 @@ void PmergeMe::SortData() {
     PrintAnyArray(this->_vector);
 
     start = clock();
-    this->_vector = this->SortAll(this->_vector);
+	std::vector<std::pair<int, int>> v_pairs;
+    this->_vector = this->SortAll(this->_vector, v_pairs);
     end = clock();
 
     std::cout << "After Vector: ";
@@ -165,7 +165,8 @@ void PmergeMe::SortData() {
     PrintAnyArray(this->_deque);
 
     start = clock();	
-    this->_deque = this->SortAll(this->_deque);
+	std::vector<std::pair<int, int>> d_pairs;
+    this->_deque = this->SortAll(this->_deque, d_pairs);
     end = clock();
 
     std::cout << "After Deque: ";

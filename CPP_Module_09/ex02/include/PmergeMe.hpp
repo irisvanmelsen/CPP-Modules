@@ -39,8 +39,8 @@ private:
     double _vect_time;
     double _deq_time;
 
-    template <typename T>
-    T SortAll(T& container);
+    template <typename T, typename P>
+    T SortAll(T& container, P& pairs);
 
     template <typename T>
     void PrintAnyArray(T array);
