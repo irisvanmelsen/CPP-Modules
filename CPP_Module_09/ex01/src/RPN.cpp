@@ -1,21 +1,9 @@
 #include "RPN.hpp"
 
 int RPN::do_calculation(std::stack<int>& stack, char calc) {
-	static int flag = 0;
 	if (stack.size() < 2) {
-		std::cout << stack.size() << std::endl;
 		std::cout << "Too little arguments to make calculation!" << std::endl;
 		return (-1);
-	}
-	if (stack.size() > 2 && flag != 1) {
-
-		std::stack<int> temp_stack;
-		while (!stack.empty()) {
-			temp_stack.push(stack.top());
-			stack.pop();
-		}
-		stack = temp_stack;
-		flag = 1;
 	}
 	int num2 = stack.top(); // top element of stack is stored in num2;
 	stack.pop();
@@ -38,7 +26,7 @@ int RPN::do_calculation(std::stack<int>& stack, char calc) {
 				std::cout << "Error: Division by zero!" << std::endl;
 				return -1;
 			}
-			result = num2 / num1;
+			result = num1 / num2;
 			break;
 		default:
 			std::cout << "Error: Invalid operator!" << std::endl;
